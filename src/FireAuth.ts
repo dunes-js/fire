@@ -3,7 +3,9 @@ import {
 	type Auth, 
 	initializeAuth,
 	signInWithEmailAndPassword,
-	browserLocalPersistence
+	browserLocalPersistence,
+  createUserWithEmailAndPassword,
+  
 } from "firebase/auth";
 import { AbstractFire } from "./AbstractFire.js";
 
@@ -18,6 +20,6 @@ export class FireAuth extends AbstractFire<Auth> {
 	}
 
 	signup(email: string, password: string) {
-		return signInWithEmailAndPassword(this.self, email, password);
+		return createUserWithEmailAndPassword(this.self, email, password);
 	}
 }
