@@ -7,6 +7,8 @@ import {
 	browserLocalPersistence,
   createUserWithEmailAndPassword,
   setPersistence,
+  indexedDBLocalPersistence,
+  inMemoryPersistence,
   type Persistence,
 } from "firebase/auth";
 
@@ -41,5 +43,13 @@ export class FireAuth extends AbstractFire<Auth>
   persistence(pers: Persistence)
   {
     return setPersistence(this.self, pers);
+  }
+
+  /**
+   * Persistence types*/
+  PERSISTENCE = {
+    browser: browserLocalPersistence,
+    indexedDB: indexedDBLocalPersistence,
+    memory: inMemoryPersistence,
   }
 }
