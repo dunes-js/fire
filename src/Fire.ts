@@ -12,72 +12,117 @@ declare const FireStorage: typeof import("./FireStorage.js").FireStorage | undef
 type FireFunctions = import("./FireFunctions.js").FireFunctions
 declare const FireFunctions: typeof import("./FireFunctions.js").FireFunctions | undefined
 
-export class Fire {
+/**
+ * Use `Fire.init()` with FirebaseOptions to start*/
+export class Fire 
+{
+  /**
+   * Static class*/
+  private constructor() {}
 	
 	static #app: FirebaseApp;
-	static #auth: FireAuth; 
-	static #data: FireData; 
-	static #storage: FireStorage; 
+	static #auth: FireAuth | null = null; 
+	static #data: FireData | null = null; 
+	static #storage: FireStorage | null = null; 
 	static #functions: FireFunctions | null = null;
 
-	static init(firebaseConfig: FirebaseOptions) {
+  /**
+   * Initialize App*/
+	static init(firebaseConfig: FirebaseOptions) 
+  {
 		this.#app = initializeApp(firebaseConfig)
 	}
 
-	static useAuth(fireAuth = FireAuth): void {
-		if (!this.#app) {
+  /**
+   * Start FireAuth. Use `Fire.auth`*/
+	static useAuth(fireAuth = FireAuth): void 
+  {
+		if (!this.#app) 
+    {
 			throw `App is not initialized`
 		}
-		if (!fireAuth) {
+		if (!fireAuth) 
+    {
 			throw `fireAuth is not imported`
 		}
 		this.#auth = new fireAuth(this.#app)
 	}
 
-	static get auth() {
-		return this.#auth;
+  /**
+   * Get access to `FireAuth` instance or null if not initialized*/
+	static get auth() 
+  : FireAuth
+  {
+		return this.#auth as FireAuth;
 	}
 
-	static useDatabase(fireData = FireData): void {
-		if (!this.#app) {
+  /**
+   * Start FireData. Use `Fire.data`*/
+	static useDatabase(fireData = FireData): void 
+  {
+		if (!this.#app) 
+    {
 			throw `App is not initialized`
 		}
-		if (!fireData) {
+		if (!fireData) 
+    {
 			throw `FireData is not imported`
 		}
 		this.#data = new fireData(this.#app)
 	}
 
-	static get data() {
-		return this.#data;
+  /**
+   * Get access to `FireData` instance or null if not initialized*/
+	static get data() 
+  : FireData
+  {
+		return this.#data as FireData;
 	}
 
-	static useStorage(fireStorage = FireStorage): void {
-		if (!this.#app) {
+  /**
+   * Start FireStorage. Use `Fire.storage`*/
+	static useStorage(fireStorage = FireStorage): void 
+  {
+		if (!this.#app) 
+    {
 			throw `App is not initialized`
 		}
-		if (!fireStorage) {
+		if (!fireStorage) 
+    {
 			throw `fireStorage is not imported`
 		}
 		this.#storage = new fireStorage(this.#app)
 	}
 
-	static get storage() {
-		return this.#storage;
+  /**
+   * Get access to `FireStorage` instance or null if not initialized*/
+	static get storage() 
+  : FireStorage
+  {
+		return this.#storage as FireStorage;
 	}
 
-	static useFunctions(fireFunctions = FireFunctions): void {
-		if (!this.#app) {
+  /**
+   * Start FireFunctions. Use `Fire.functions`*/
+	static useFunctions(fireFunctions = FireFunctions): void 
+  {
+		if (!this.#app) 
+    {
 			throw `App is not initialized`
 		}
-		if (!fireFunctions) {
+		if (!fireFunctions) 
+    {
 			throw `fireFunctions is not imported`
 		}
 		this.#functions = new fireFunctions(this.#app)
 	}
 
-	static get functions() {
-		return this.#functions;
+  /**
+   * Get access to `FireFunctions` instance or null if not initialized*/
+	static get functions() 
+  : FireFunctions
+  {
+		return this.#functions as FireFunctions;
 	}
 }
 

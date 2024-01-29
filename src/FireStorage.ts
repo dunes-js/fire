@@ -12,9 +12,12 @@ import {
 } from "firebase/storage";
 
 
-export class FireStorage extends AbstractFire<FirebaseStorage> {
-
-	constructor(app: FirebaseApp) {
+/**
+ * Initialized using `Fire.useStorage()` and used as `Fire.storage`*/
+export class FireStorage extends AbstractFire<FirebaseStorage> 
+{
+	constructor(app: FirebaseApp) 
+  {
 		super(getStorage(app))
 	}
 
