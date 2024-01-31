@@ -27,11 +27,18 @@ export class Fire
 	static #functions: FireFunctions | null = null;
 
   /**
-   * Initialize App*/
-	static init(firebaseConfig: FirebaseOptions) 
+   * Get App*/
+	static app() 
   {
-		this.#app = initializeApp(firebaseConfig)
+		return this.#app;
 	}
+
+  /**
+   * Initialize App*/
+  static init(firebaseConfig: FirebaseOptions) 
+  {
+    this.#app = initializeApp(firebaseConfig)
+  }
 
   /**
    * Start FireAuth. Use `Fire.auth`*/
